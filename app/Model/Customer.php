@@ -55,4 +55,15 @@ class Customer extends AppModel {
 		)
 	);
 
+	// ‚·‚×‚Äˆê‚É•Û‘¶
+	public function addAll($data = null) {
+		if($data == null){ // ƒŒƒR[ƒh‚ª‚È‚¯‚ê‚Î return
+			return false;
+		}
+		var_dump($data);
+		$result = $this->saveAll($data); // Cusotmer ‚É•Û‘¶
+		var_dump($result);
+		return true;
+	}
+
 }

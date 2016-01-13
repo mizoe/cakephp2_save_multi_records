@@ -105,8 +105,28 @@ class CustomersController extends AppController {
 
 	public function add_all() {
 		if ($this->request->is('post')) {
-			$this->Customer->create();
-			if ($this->Customer->save($this->request->data)) {
+			//$this->request->data
+			/*
+			 http://book.cakephp.org/2.0/ja/models/saving-your-data.html
+			データをこの形にする
+			 $data = array(
+				'Article' => array('title' => 'My first article'),
+				'Comment' => array(
+					array('body' => 'Comment 1', 'user_id' => 1),
+					array('body' => 'Comment 2', 'user_id' => 12),
+					array('body' => 'Comment 3', 'user_id' => 40),
+				),
+			);
+			今回の場合はこんな感じ
+			$data = array(
+				'Customer' => array('name' => 'add_all test'),
+				'Address' => array(
+					array('address' => 'a0'),
+					array('address' => 'a1'),
+				),
+			);
+			 */
+			if ($this->Customer->addAll($this->request->data)) {
 				$this->Session->setFlash(__('The customer has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
