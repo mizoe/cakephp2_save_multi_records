@@ -102,4 +102,17 @@ class CustomersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function add_all() {
+		if ($this->request->is('post')) {
+			$this->Customer->create();
+			if ($this->Customer->save($this->request->data)) {
+				$this->Session->setFlash(__('The customer has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The customer could not be saved. Please, try again.'));
+			}
+		}
+	}
+
 }
